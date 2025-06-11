@@ -1,0 +1,141 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "001_only_dimensions.tmj",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "/Users/marcusriemer/Projects/async-dungeon-dive/test/tiled/tilesets/anokolisa/fairy_forest_props.tsj": {
+            "scaleInDock": 1
+        },
+        "/Users/marcusriemer/Projects/async-dungeon-dive/test/tiled/tilesets/anokolisa/fairy_forest_tiles.tsj": {
+            "scaleInDock": 1
+        },
+        "001_only_dimensions.tmj": {
+            "scale": 0.705078125,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 320.5318559556786,
+                "y": 311.31301939058176
+            }
+        },
+        "002_empty_single_tileset.tmx": {
+            "scale": 3.8296875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.0326397388821,
+                "y": 80.0326397388821
+            }
+        },
+        "002_single_layer_2x2.tmj": {
+            "scale": 14.13125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 15.992923485183546,
+                "y": 16.028306059265812
+            }
+        },
+        "002_single_layer_4x4.tmj": {
+            "scale": 3.8296875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 33.68421052631579,
+                "y": 72.19910240718073
+            }
+        },
+        "002_single_tileset_single_layer_single_tile.tmj": {
+            "scale": 3.8296875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.0326397388821,
+                "y": 80.0326397388821
+            }
+        },
+        "003_objects.tmj": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 9.57421875,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 31.96083231334149,
+                "y": 32.01305589555284
+            }
+        },
+        "003_single_object_point.tmj": {
+            "scale": 9.57421875,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 16.032639738882086,
+                "y": 16.03263973888209
+            }
+        },
+        "004_multiple_layer_3x3.tmj": {
+            "scale": 7.06,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 24.079320113314445,
+                "y": 23.158640226628897
+            }
+        },
+        "004_multiple_layer_4x4.tmj": {
+            "scale": 7.065625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 31.985846970367092,
+                "y": 32.056612118531625
+            }
+        },
+        "kenney_roguelike_spritesheet.tsj": {
+            "scaleInDock": 3.2941,
+            "scaleInEditor": 1.4057
+        },
+        "kenney_tilemap.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.1564
+        },
+        "tmw_desert_spacing.tsj": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3.8886
+        }
+    },
+    "last.imagePath": "/Users/marcusriemer/Projects/async-dungeon-dive/test/tiled/fixtures",
+    "map.height": 10,
+    "map.lastUsedFormat": "json",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 10,
+    "openFiles": [
+        "004_multiple_layer_3x3.tmj",
+        "kenney_tilemap.tsj",
+        "kenney_roguelike_spritesheet.tsj",
+        "tmw_desert_spacing.tsj",
+        "002_single_layer_2x2.tmj",
+        "003_objects.tmj",
+        "001_only_dimensions.tmj"
+    ],
+    "project": "test.tiled-project",
+    "recentFiles": [
+        "004_multiple_layer_3x3.tmj",
+        "kenney_tilemap.tsj",
+        "kenney_roguelike_spritesheet.tsj",
+        "tmw_desert_spacing.tsj",
+        "002_single_layer_2x2.tmj",
+        "003_objects.tmj",
+        "001_only_dimensions.tmj",
+        "004_multiple_layer_4x4.tmj",
+        "002_single_layer_4x4.tmj",
+        "002_empty_single_tileset.tmx",
+        "003_single_object_point.tmj"
+    ],
+    "tileset.lastUsedFormat": "json",
+    "tileset.margin": 1,
+    "tileset.spacing": 1,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

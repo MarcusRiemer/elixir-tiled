@@ -1,0 +1,87 @@
+{ "compressionlevel":-1,
+ "height":4,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0],
+         "height":4,
+         "id":1,
+         "name":"Tile Layer 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":4,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "height":0,
+                 "id":1,
+                 "name":"The Point",
+                 "point":true,
+                 "rotation":0,
+                 "type":"PointClass",
+                 "visible":true,
+                 "width":0,
+                 "x":16,
+                 "y":16
+                }, 
+                {
+                 "height":0,
+                 "id":2,
+                 "name":"The Rectangle",
+                 "rotation":0,
+                 "type":"RectClass",
+                 "visible":true,
+                 "width":0,
+                 "x":47.0599755201958,
+                 "y":16.9400244798042
+                }, 
+                {
+                 "height":6.7890656874745,
+                 "id":3,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":12.3247654018768,
+                 "x":39.7943696450428,
+                 "y":31.3341493268054
+                }, 
+                {
+                 "height":8.98245614035088,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":19.0093839249286,
+                 "x":8.87800897592819,
+                 "y":24.8584251325989
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":3,
+ "nextobjectid":5,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilesets":[],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":4
+}
