@@ -20,6 +20,7 @@ defmodule Tiled.Tileset do
 
     field(:path, :string, virtual: true)
     field(:image_data, :map, virtual: true)
+    field(:cached_tiles, :map, virtual: true, default: %{})
   end
 
   @fields [
@@ -57,16 +58,24 @@ defmodule Tiled.Tileset do
   def tile_image(%__MODULE__{} = tileset, idx) when is_integer(idx) do
     {x, y} = Tiled.Coordinate.point_from_index(tileset, idx)
 
-    case Image.crop(tileset.image_data, x, y, tileset.tilewidth, tileset.tileheight) do
-      {:ok, image} ->
-        {:ok, image}
+    case Map.get(tileset.cached_tiles, {x, y}, :notfound) do
+      %Vix.Vips.Image{} = image ->
+        Logger.debug("Cache hit: #{tileset.name} at {#{x}, #{y}}")
+        {:ok, image, tileset}
 
-      {:error, msg} ->
-        Logger.error(
-          "Could not load tile ##{idx} (x: #{x}, y: #{y}) from #{tileset.path}: #{inspect(msg)}"
-        )
+      :notfound ->
+        case Image.crop(tileset.image_data, x, y, tileset.tilewidth, tileset.tileheight) do
+          {:ok, image} ->
+            Logger.debug("Cache write: #{tileset.name} at {#{x}, #{y}}")
+            {:ok, image, put_in(tileset, [Access.key!(:cached_tiles), {x, y}], image)}
 
-        {:error, Image.new!(tileset.tilewidth, tileset.tileheight, color: [255, 0, 0, 255])}
+          {:error, msg, tileset} ->
+            Logger.error(
+              "Could not load tile ##{idx} (x: #{x}, y: #{y}) from #{tileset.path}: #{inspect(msg)}"
+            )
+
+            {:error, Image.new!(tileset.tilewidth, tileset.tileheight, color: [255, 0, 0, 255])}
+        end
     end
   end
 

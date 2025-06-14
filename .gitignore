@@ -21,3 +21,10 @@ elixir_tiled-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+*_run.png
+
+# Mac OS annoyances
+.DS_store
+
+# Tiled temporary files
+*.tiled-session

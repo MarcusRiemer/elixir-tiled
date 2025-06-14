@@ -139,7 +139,7 @@ defmodule Tiled.Map do
     base_image = Image.new!(image_width(map), image_height(map), color: [0, 0, 0, 0])
 
     map.layers
-    |> Enum.reduce(base_image, fn %TileLayer{} = layer, %Vix.Vips.Image{} = acc ->
+    |> Enum.reduce({base_image, map}, fn %TileLayer{} = layer, {%Vix.Vips.Image{} = acc, %__MODULE__{} = map} ->
       render_layer!(acc, map, layer)
     end)
   end
@@ -149,22 +149,32 @@ defmodule Tiled.Map do
     |> Enum.with_index()
     |> Enum.filter(fn {tile, _coord_index} -> tile > 0 end)
     # |> Enum.take(50) # Rendering more than 50 tiles on a single layer crashes the phoenix server on the second rendering of a controller
-    |> Enum.reduce(map_image, fn {tile, coord_index}, %Vix.Vips.Image{} = accu_image ->
-      {render_x, render_y} = Tiled.Coordinate.point_from_index(map, layer.width, coord_index)
-      {:ok, rendered_tile_image} = tile_image(map, tile)
+    |> Enum.reduce({map_image, map}, fn {tile, coord_index},
+                                        {%Vix.Vips.Image{} = accu_image, accu_map} ->
+      {render_x, render_y} = Tiled.Coordinate.point_from_index(accu_map, layer.width, coord_index)
+      {:ok, rendered_tile_image, new_map} = tile_image(accu_map, tile)
 
-      Image.compose!(accu_image, rendered_tile_image, x: render_x, y: render_y)
+      {Image.compose!(accu_image, rendered_tile_image, x: render_x, y: render_y), new_map}
     end)
   end
 
   def tile_image(%__MODULE__{} = map, tile_idx) when is_integer(tile_idx) do
-    tileset_reference = map.tilesets |> Enum.reverse() |> Enum.find(&(tile_idx >= &1.firstgid))
+    tileset_reference_index =
+      map.tilesets |> Enum.reverse() |> Enum.find_index(&(tile_idx >= &1.firstgid))
 
-    Tiled.Tileset.tile_image(tileset_reference.tileset, tile_idx - tileset_reference.firstgid)
+    tileset_reference = Enum.at(map.tilesets, tileset_reference_index)
+
+    {:ok, rendered_tile_image, updated_tileset} =
+      Tiled.Tileset.tile_image(tileset_reference.tileset, tile_idx - tileset_reference.firstgid)
+
+    updated_tileset_reference = put_in(tileset_reference, [Access.key!(:tileset)], updated_tileset)
+
+    {:ok, rendered_tile_image,
+     put_in(map, [Access.key(:tilesets), Access.at(tileset_reference_index)], updated_tileset_reference)}
   end
 
   def write_image!(%__MODULE__{} = map, suffix \\ "") do
-    result_image = render!(map)
+    {result_image, updated_map} = render!(map)
 
     path_basename = Path.basename(map.path, ".tmj")
 
@@ -172,7 +182,7 @@ defmodule Tiled.Map do
       minimize_file_size: true
     )
 
-    result_image
+    {result_image, updated_map}
   end
 
   defp image_width(%__MODULE__{} = map), do: map.tilewidth * map.width

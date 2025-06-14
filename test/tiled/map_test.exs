@@ -42,7 +42,7 @@ defmodule Tiled.MapTest do
            } = map
 
     # Compare to reference rendering
-    res = Tiled.Map.write_image!(map, "_run")
+    {res, _updated_map} = Tiled.Map.write_image!(map, "_run")
     ref = Image.open!("test/tiled/fixtures/002_single_layer_2x2_ref.png")
     assert {:ok, 0} = Image.hamming_distance(res, ref)
   end
@@ -92,7 +92,7 @@ defmodule Tiled.MapTest do
            } = map
 
     # Compare to reference rendering
-    res = Tiled.Map.write_image!(map, "_run")
+    {res, _updated_map} = Tiled.Map.write_image!(map, "_run")
     ref = Image.open!("test/tiled/fixtures/004_multiple_layer_3x3_ref.png")
     assert {:ok, 0} = Image.hamming_distance(res, ref)
   end
@@ -101,8 +101,30 @@ defmodule Tiled.MapTest do
     map = Tiled.Map.load!("test/tiled/fixtures/005_render_crash_10x10.tmj")
 
     # Compare to reference rendering
-    res = Tiled.Map.write_image!(map, "_run")
+    {res, _updated_map} = Tiled.Map.write_image!(map, "_run")
     ref = Image.open!("test/tiled/fixtures/005_render_crash_10x10_ref.png")
     assert {:ok, 0} = Image.hamming_distance(res, ref)
+  end
+
+  test "input 006: all identical 2x2" do
+    map = Tiled.Map.load!("test/tiled/fixtures/006_all_identical_2x2.tmj")
+
+    # Compare to reference rendering
+    {res, updated_map}  = Tiled.Map.write_image!(map, "_run")
+    ref = Image.open!("test/tiled/fixtures/006_all_identical_2x2_ref.png")
+    assert {:ok, 0} = Image.hamming_distance(res, ref)
+
+    assert %Tiled.Map{ tilesets: [ %Tiled.Map.TilesetReference{ tileset: %Tiled.Tileset{ cached_tiles: %{ {0, 0} => %Vix.Vips.Image{} }}} ]} = updated_map
+  end
+
+  test "input 007: all identical 30x30" do
+    map = Tiled.Map.load!("test/tiled/fixtures/007_all_identical_30x30.tmj")
+
+    # Compare to reference rendering
+    {res, updated_map}  = Tiled.Map.write_image!(map, "_run")
+    ref = Image.open!("test/tiled/fixtures/007_all_identical_30x30_ref.png")
+    assert {:ok, 0} = Image.hamming_distance(res, ref)
+
+    assert %Tiled.Map{ tilesets: [ %Tiled.Map.TilesetReference{ tileset: %Tiled.Tileset{ cached_tiles: %{ {17, 0} => %Vix.Vips.Image{} }}} ]} = updated_map
   end
 end
