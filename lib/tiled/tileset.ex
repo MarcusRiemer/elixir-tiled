@@ -60,16 +60,16 @@ defmodule Tiled.Tileset do
 
     case Map.get(tileset.cached_tiles, {x, y}, :notfound) do
       %Vix.Vips.Image{} = image ->
-        Logger.debug("Cache hit: #{tileset.name} at {#{x}, #{y}}")
+        Logger.debug("Cache hit: #{tileset.name}##{idx} at {#{x}, #{y}}")
         {:ok, image, tileset}
 
       :notfound ->
         case Image.crop(tileset.image_data, x, y, tileset.tilewidth, tileset.tileheight) do
           {:ok, image} ->
-            Logger.debug("Cache write: #{tileset.name} at {#{x}, #{y}}")
+            Logger.debug("Cache write: #{tileset.name}##{idx} at {#{x}, #{y}}")
             {:ok, image, put_in(tileset, [Access.key!(:cached_tiles), {x, y}], image)}
 
-          {:error, msg, tileset} ->
+          {:error, msg} ->
             Logger.error(
               "Could not load tile ##{idx} (x: #{x}, y: #{y}) from #{tileset.path}: #{inspect(msg)}"
             )
@@ -81,7 +81,12 @@ defmodule Tiled.Tileset do
 
   defp load_image_data!(%__MODULE__{} = tileset) do
     image_path = Path.expand(tileset.image, Path.dirname(tileset.path))
+    image_data = Image.open!(image_path)
 
-    %{tileset | image_data: Image.open!(image_path)}
+    Logger.debug(
+      ~s|Loaded "#{image_path}, is #{Image.width(image_data)}x#{Image.height(image_data)}"|
+    )
+
+    %{tileset | image_data: image_data}
   end
 end

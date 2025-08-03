@@ -1,6 +1,20 @@
 defmodule Tiled.MapTest do
   use ExUnit.Case, async: true
 
+  describe "map_index_to_tileset_index/2" do
+    test "Single Tileset starting at 1" do
+      ref_0 = %{firstgid: 1, source: "a"}
+      assert {^ref_0, 0, 0} = Tiled.Map.map_index_to_tileset_index([ref_0], 1)
+    end
+
+    test "Two tilesets" do
+      refs = [ref_0, ref_1] = [%{firstgid: 1, source: "a"}, %{firstgid: 10, source: "b"}]
+
+      assert {^ref_0, 0, 0} = Tiled.Map.map_index_to_tileset_index(refs, 1)
+      assert {^ref_1, 1, 0} = Tiled.Map.map_index_to_tileset_index(refs, 10)
+    end
+  end
+
   test "input 001: Only dimensions for finite map" do
     map = Tiled.Map.load!("test/tiled/fixtures/001_only_dimensions.tmj")
 
@@ -16,7 +30,7 @@ defmodule Tiled.MapTest do
            } = map
   end
 
-  test "input 002: Single referenced tileset with single tile" do
+  test "input 002: Single referenced tileset with four different tiles" do
     map = Tiled.Map.load!("test/tiled/fixtures/002_single_layer_2x2.tmj")
 
     assert %Tiled.Map{
@@ -97,7 +111,8 @@ defmodule Tiled.MapTest do
     assert {:ok, 0} = Image.hamming_distance(res, ref)
   end
 
-  test "input 005: This crashes the image library?!" do
+  @tag :crash
+  test "input 005: This sometimes crashes the image library?!" do
     map = Tiled.Map.load!("test/tiled/fixtures/005_render_crash_10x10.tmj")
 
     # Compare to reference rendering
@@ -110,21 +125,34 @@ defmodule Tiled.MapTest do
     map = Tiled.Map.load!("test/tiled/fixtures/006_all_identical_2x2.tmj")
 
     # Compare to reference rendering
-    {res, updated_map}  = Tiled.Map.write_image!(map, "_run")
+    {res, updated_map} = Tiled.Map.write_image!(map, "_run")
     ref = Image.open!("test/tiled/fixtures/006_all_identical_2x2_ref.png")
     assert {:ok, 0} = Image.hamming_distance(res, ref)
 
-    assert %Tiled.Map{ tilesets: [ %Tiled.Map.TilesetReference{ tileset: %Tiled.Tileset{ cached_tiles: %{ {0, 0} => %Vix.Vips.Image{} }}} ]} = updated_map
+    assert %Tiled.Map{
+             tilesets: [
+               %Tiled.Map.TilesetReference{
+                 tileset: %Tiled.Tileset{cached_tiles: %{{0, 0} => %Vix.Vips.Image{}}}
+               }
+             ]
+           } = updated_map
   end
 
-  test "input 007: all identical 30x30" do
+  @tag :crash
+  test "input 007: all identical 30x30, this always crashes the image library?!" do
     map = Tiled.Map.load!("test/tiled/fixtures/007_all_identical_30x30.tmj")
 
     # Compare to reference rendering
-    {res, updated_map}  = Tiled.Map.write_image!(map, "_run")
+    {res, updated_map} = Tiled.Map.write_image!(map, "_run")
     ref = Image.open!("test/tiled/fixtures/007_all_identical_30x30_ref.png")
     assert {:ok, 0} = Image.hamming_distance(res, ref)
 
-    assert %Tiled.Map{ tilesets: [ %Tiled.Map.TilesetReference{ tileset: %Tiled.Tileset{ cached_tiles: %{ {17, 0} => %Vix.Vips.Image{} }}} ]} = updated_map
+    assert %Tiled.Map{
+             tilesets: [
+               %Tiled.Map.TilesetReference{
+                 tileset: %Tiled.Tileset{cached_tiles: %{{17, 0} => %Vix.Vips.Image{}}}
+               }
+             ]
+           } = updated_map
   end
 end
