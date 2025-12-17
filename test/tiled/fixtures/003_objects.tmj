@@ -25,10 +25,58 @@
                 {
                  "height":0,
                  "id":1,
-                 "name":"The Point",
+                 "name":"The Spawn",
                  "point":true,
                  "rotation":0,
-                 "type":"PointClass",
+                 "type":"Spawn",
+                 "visible":true,
+                 "width":0,
+                 "x":8,
+                 "y":8
+                }, 
+                {
+                 "height":32,
+                 "id":2,
+                 "name":"The Rectangle",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":32,
+                 "y":0
+                }, 
+                {
+                 "height":0,
+                 "id":5,
+                 "name":"The Polygon",
+                 "polygon":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":0,
+                         "y":48
+                        }, 
+                        {
+                         "x":48,
+                         "y":48
+                        }, 
+                        {
+                         "x":48,
+                         "y":16
+                        },
+                    
+                        {
+                         "x":16,
+                         "y":16
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }],
+                 "rotation":0,
+                 "type":"",
                  "visible":true,
                  "width":0,
                  "x":16,
@@ -36,36 +84,31 @@
                 }, 
                 {
                  "height":0,
-                 "id":2,
-                 "name":"The Rectangle",
+                 "id":6,
+                 "name":"The Polyline",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":0
+                        }, 
+                        {
+                         "x":16,
+                         "y":-16
+                        }, 
+                        {
+                         "x":32,
+                         "y":0
+                        }],
                  "rotation":0,
-                 "type":"RectClass",
+                 "type":"",
                  "visible":true,
                  "width":0,
-                 "x":47.0599755201958,
-                 "y":16.9400244798042
-                }, 
-                {
-                 "height":6.7890656874745,
-                 "id":3,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":12.3247654018768,
-                 "x":39.7943696450428,
-                 "y":31.3341493268054
-                }, 
-                {
-                 "height":8.98245614035088,
-                 "id":4,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":19.0093839249286,
-                 "x":8.87800897592819,
-                 "y":24.8584251325989
+                 "x":32,
+                 "y":48
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -73,8 +116,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":3,
- "nextobjectid":5,
+ "nextlayerid":5,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

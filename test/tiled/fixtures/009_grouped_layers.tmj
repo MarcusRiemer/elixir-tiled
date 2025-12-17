@@ -1,0 +1,104 @@
+{ "compressionlevel":-1,
+ "height":4,
+ "infinite":false,
+ "layers":[
+        {
+         "id":2,
+         "layers":[
+                {
+                 "data":[49, 49, 49, 49,
+                    49, 49, 49, 49,
+                    49, 49, 49, 49,
+                    49, 49, 49, 49],
+                 "height":4,
+                 "id":1,
+                 "name":"Tile Layer 1",
+                 "opacity":1,
+                 "type":"tilelayer",
+                 "visible":true,
+                 "width":4,
+                 "x":0,
+                 "y":0
+                }, 
+                {
+                 "draworder":"topdown",
+                 "id":4,
+                 "name":"Object Layer 1",
+                 "objects":[
+                        {
+                         "height":32,
+                         "id":1,
+                         "name":"Nested Rect",
+                         "rotation":0,
+                         "type":"",
+                         "visible":true,
+                         "width":32,
+                         "x":16,
+                         "y":0
+                        }],
+                 "opacity":1,
+                 "type":"objectgroup",
+                 "visible":true,
+                 "x":0,
+                 "y":0
+                }],
+         "name":"Group 1",
+         "opacity":1,
+         "type":"group",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0,
+            0, 114, 115, 0,
+            0, 116, 117, 0,
+            0, 0, 0, 0],
+         "height":4,
+         "id":3,
+         "name":"Tile Layer 2",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":4,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"Object Layer 2",
+         "objects":[
+                {
+                 "height":32,
+                 "id":2,
+                 "name":"Top Level Rect",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":16,
+                 "y":32
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":6,
+ "nextobjectid":3,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"kenney_tilemap.tsj"
+        }],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":4
+}

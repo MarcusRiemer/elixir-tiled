@@ -1,0 +1,86 @@
+{ "compressionlevel":-1,
+ "height":1,
+ "infinite":false,
+ "layers":[
+        {
+         "draworder":"topdown",
+         "id":2,
+         "name":"Objects",
+         "objects":[
+                {
+                 "height":0,
+                 "id":1,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":8,
+                 "y":8
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        },
+    
+        {
+         "id":3,
+         "layers":[],
+         "name":"Group",
+         "opacity":1,
+         "type":"group",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":4,
+ "nextobjectid":2,
+ "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"boolean_value",
+         "type":"bool",
+         "value":true
+        },
+    
+        {
+         "name":"float_value",
+         "type":"float",
+         "value":3.14
+        },
+    
+        {
+         "name":"id",
+         "type":"string",
+         "value":"string_id"
+        },
+    
+        {
+         "name":"int_value",
+         "type":"int",
+         "value":5
+        },
+    
+        {
+         "name":"missing_object",
+         "type":"object",
+         "value":0
+        },
+    
+        {
+         "name":"object_value",
+         "type":"object",
+         "value":1
+        }],
+ "renderorder":"right-down",
+ "tiledversion":"1.11.2",
+ "tileheight":16,
+ "tilesets":[],
+ "tilewidth":16,
+ "type":"map",
+ "version":"1.10",
+ "width":1
+}
